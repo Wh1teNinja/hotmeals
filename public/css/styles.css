@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8feff;
+  color: #05004e;
+}
+
+a {
+  text-decoration: none;
+  color: #05004e;
+}
+
+h1, h2, h3, h4, a, button, span {
+  font-family: 'Patua One', cursive;
+}
+
+p, li, label, input[type="text"] {
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h3 {
+  color: #fd5f00;
+}
+
+li > a:hover {
+  color: #fd5f00;
+  transition: color 0.5s;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+  font-size: 1em;
+}
+
+/* Supportive classes */
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.margin-top {
+  margin-top: 50px;
+}
+
+/* Header */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  font-size: 1.3em;
+}
+
+header > .logo {
+  margin-right: auto;
+  margin-left: 50px;
+  width: 200px;
+}
+
+header > .login-area {
+  margin-right: 50px;
+  margin-left: auto;
+  width: 200px;
+}
+
+header > nav > ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  list-style: none;
+  padding: 0;
+}
+
+header > nav > ul > li {
+  margin: 0px 20px;
+}
+
+/* Login and Sign-up */
+
+.login-registration {
+  border-top: 1px solid #05004e;
+
+  display: flex;
+  justify-items: center;
+  align-content: center;
+
+  font-size: 1.6em;
+  padding: 5% 15%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  box-shadow: 5px 5px 10px grey;
+  padding: 5%;
+  margin: 3%;
+}
+
+.form input, .form label {
+  width: 100%;
+  margin: 3% 2%;
+}
+
+.form input {
+  border: 1px solid #05004e44;
+  border-radius: 5px;
+}
+
+.form .submit {
+  width: 30%;
+  font-size: 0.7em;
+}
+
+/* Heroes */
+
+.hero-home {
+  background-image: url("/images/hero-home.jpg");
+  background-position: center;
+  height: 500px;
+}
+
+.hero-home > h1 {
+  font-size: 5em;
+  text-align: center;
+  color: #f8feff;
+}
+
+.hero-packages {
+  background-image: linear-gradient(0deg, #76b39d9d, #76b39d9d),url("/images/hero-packages.jpg");
+  background-position: center;
+  height: 400px;
+  background-size: cover;
+}
+
+.hero-packages > h1 {
+  font-size: 5em;
+  text-align: center;
+  color: #f8feff;
+}
+
+/* Delivery Steps */
+
+.delivery-steps > h2 {
+  font-size: 2em;
+}
+
+.three-delivery-steps {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 25%);
+  justify-content: center;
+}
+
+.delivery-step {
+  background-color: #f8feff;
+  margin: 5%;
+  text-align: center;
+}
+
+.delivery-step > img {
+  margin-bottom: 5%;
+}
+
+.delivery-step > h3 {
+  margin: 1%;
+}
+
+.delivery-step > p {
+  margin: 1%;
+}
+
+/* Our Packages Banner */
+
+.our-packages-banner {
+  background: linear-gradient(0deg, #76b39d9d, #76b39d9d),url("/images/packages-home.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 500px;
+}
+
+.our-packages-banner > h2 {
+  color: #f8feff;
+  font-size: 4em;
+}
+
+/* Top Meals */
+
+.top-meals {
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+.top-meals > h2 {
+  font-size: 2em;
+}
+
+.top-meals > p {
+  font-size: 1em;
+}
+
+.top-meals-cards {
+  width: 99%;
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  justify-content: center;
+  padding-bottom: 3%;
+}
+
+.top-meal-card {
+  box-shadow: 5px 5px 10px grey;
+  border-radius: 2px;
+  margin: 5%;
+  text-align: center;
+  
+  position: relative;
+  overflow: hidden;
+}
+
+.top-meal-card > img {
+  width: 100%;
+}
+
+.top-meal-card-desc {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  background-color: rgba(61, 61, 61, 0.753);
+  animation-name: fade-in-bottom;
+  animation-duration: 1s;
+}
+
+.top-meal-card-title > a, .top-meal-card-price {
+  color: #f8feff;
+  font-family: 'Lato', sans-serif;
+}
+
+.top-meal-card-title > a:hover {
+  color: #76b39d;
+}
+
+.top-meal-card-title, .top-meal-card-price {
+  margin: 1% 0 2% 0;
+}
+
+.top-meal-card:hover > .top-meal-card-desc  {
+  display: flex;
+}
+
+/* Packages */
+
+.packages-list {
+  width: 99%;
+  display: grid;
+  grid-template-columns: repeat(4, 20em);
+  justify-content: center;
+  padding-bottom: 3%;
+
+  font-size: 1.2em;
+}
+
+.package-card {
+  box-shadow: 5px 5px 10px grey;
+  border-radius: 2px;
+  margin: 5%;
+  text-align: center;
+}
+
+.package-card > img {
+  width: 100%;
+}
+
+.package-info  {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.package-info > * {
+  margin: 1%;
+}
+
+.package-info > a {
+  margin: 3%;
+}
+
+/* Footer */
+
+footer {
+  padding: 5% 0 0;
+  border-top: 1px solid #05004e;
+  font-size: 1.3em;
+}
+
+footer * {
+  color: #05004e;
+}
+
+footer > div {
+  display: grid;
+  grid-template-columns: 20% 40% 20%;
+  column-gap: 3%;
+  justify-content: center;
+  padding-bottom: 5%;
+  border-bottom: 1px solid #05004e;
+}
+
+
+footer > p {
+  text-align: center;
+}
+
+footer ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* Go To the Top button */
+
+#arrow-up {
+  position: fixed;
+  bottom: 5%;
+  right: 2%;
+
+  border: none;
+  border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  font-size: 4em;
+
+  text-align: center;
+  line-height: 90px;
+
+  background-color: #fd5f00;
+  color: #05004e;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+#arrow-up:hover {
+  color: #f8feff;
+  transition: color 0.2s;
+}
+
+/* Buttons */
+
+.button {
+  border: 2px solid #fd5f00;
+  padding: 0.7em;
+  color: #fd5f00;
+}
+ 
+.sqr {
+  border-radius: 1px;
+}
+
+.rnd {
+  border-radius: 15px;
+}
+
+.solid-button {
+  background-color: #fd5f00;
+  color: #f8feff;
+}
+
+.sign-up-button {
+  padding: 0.5em;
+  background-color: #76b39d;
+}
+
+.sign-up-button:hover {
+  color: #05004e;
+  transition: color 0.5s;
+}
+
+.subscribe-button {
+  color: #05004e;
+  border-color: #05004e;
+  background-color: #f8feff;
+  font-size: 1.1em;
+  padding: 5px;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Animations */
+
+@keyframes fade-in-bottom {
+  0%   {margin-bottom: -20%;}
+  100% {margin-bottom: 0;}
+}

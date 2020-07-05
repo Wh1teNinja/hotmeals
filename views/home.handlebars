@@ -1,0 +1,56 @@
+<section>
+  <div class="flex-center hero-home">
+    <h1>Food delivery in Toronto</h1>
+    <a class="button sqr solid-button" href="meal-packages">Order</a>
+  </div>
+</section>
+<main>
+  <section>
+    <div class="flex-center margin-top delivery-steps">
+      <h2>As simple as that</h2>
+      <div class="three-delivery-steps">
+        <div class="delivery-step flex-center">
+          <img src="images/order-step.svg" alt="Pick" width="198">
+          <h3>Order</h3>
+          <p>Few steps and your order is on fire.</p>
+        </div>
+        <div class="delivery-step flex-center">
+          <img src="images/delivery-step.svg" alt="Heat" width="198">
+          <h3>Delivery</h3>
+          <p>Fast, but Careful delivery.</p>
+        </div>
+        <div class="delivery-step flex-center">
+          <img src="images/enjoy-step.svg" alt="Eat" width="198">
+          <h3>Enjoy</h3>
+          <p>Enjoy your meal!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="flex-center margin-top our-packages-banner">
+      <h2>Order your own meal</h2>
+      <a class="button sqr solid-button" href="meal-packages">View packages</a>
+    </div>
+  </section>
+  <section>
+    <div class="flex-center margin-top top-meals">
+      <h2>Top meals that are most popular among our customers!</h1>
+        <p>You could be chowing down on any of these meals any time you choose - seriously! Order some (or all) of
+          these
+          meals and see why thousands of Canadians order them.</p>
+        <div class="top-meals-cards">
+          {{#each topMeals}}
+          <div class="top-meal-card flex-center">
+            <img src="images/{{this.image}}">
+            <div class="top-meal-card-desc flex-center">
+                <h3 class="top-meal-card-title"><a href="">{{this.title}}</a></h3>
+                <span class="top-meal-card-price">${{this.price}}</span>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        <a class="button sqr solid-button" href="/meal-packages">FULL MENU</a>
+    </div>
+  </section>
+</main>

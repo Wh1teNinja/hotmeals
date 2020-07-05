@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>{{title}}</title>
+</head>
+
+<body>
+  <header id="top">
+    <a href="/" class="logo"><img src="images/logo.svg" alt="logo"></a>
+    <nav>
+      <span class="mobile-only">Menu</span>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/meal-packages">Packages</a></li>
+      </ul>
+    </nav>
+    <div class="login-area">
+      <a class="rnd solid-button sign-up-button" href="/login">Sign Up</a> |
+      <a class="login-button" href="/login">Login</a>
+    </div>
+  </header>
+  {{{body}}}
+  <footer>
+    <div>
+      <div>
+        <h3>Navigation</h3>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/meal-packages">Meal Packages</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <form id="subscribe" action="" method="POST">
+          <h3>Subscribe for newsletter</h3>
+          <label>
+            Your email:
+            <input type="email" autocomplete="email" name="email" placeholder="email@example.com" />
+          </label>
+          <button class="button sqr subscribe-button" type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div>
+        <h3>Our Social Medias</h3>
+        <a href="">Twitter</a>
+        <a href="">Facebook</a>
+        <a href="">Instagram</a>
+      </div>
+    </div>
+    <p>This is a college project and doesn't represent a real company. All pictures taken from unsplash.com or made by
+      the author.</p>
+  </footer>
+  <button onclick="window.scrollTo(0, 0);" id="arrow-up">^</button>
+</body>
+
+</html>

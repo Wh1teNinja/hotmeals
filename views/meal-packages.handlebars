@@ -1,0 +1,22 @@
+<section>
+  <div class="flex-center hero-packages">
+    <h1>Our meal packages</h1>
+  </div>
+</section>
+<main>
+  <section>
+    <div class="packages-list">
+      {{#each packages}}
+      <div class="package-card">
+        <img src="images/{{this.image}}">
+        <div class="package-info">
+          <h3>{{this.title}}</h3>
+          <p>{{this.desc}}</p>
+          <span>${{this.price}}</span>
+          <a href="" class="button sqr solid-button">View Package</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+</main>
