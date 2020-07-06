@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 html {
   scroll-behavior: smooth;
@@ -17,15 +17,27 @@ a {
   color: #05004e;
 }
 
-h1, h2, h3, h4, a, button, span {
-  font-family: 'Patua One', cursive;
+h1,
+h2,
+h3,
+h4,
+a,
+button,
+span {
+  font-family: "Patua One", cursive;
 }
 
-p, li, label, input[type="text"] {
-  font-family: 'Lato', sans-serif;
+p,
+li,
+label,
+input[type="text"] {
+  font-family: "Lato", sans-serif;
 }
 
-h1, h2, h3, h3 {
+h1,
+h2,
+h3,
+h3 {
   color: #fd5f00;
 }
 
@@ -34,7 +46,13 @@ li > a:hover {
   transition: color 0.5s;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
+p, h2 {
+  font-size: 1.2em;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
   font-size: 1em;
 }
 
@@ -73,7 +91,7 @@ header > .login-area {
   width: 200px;
 }
 
-header > nav > ul {
+#header-menu {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -82,7 +100,7 @@ header > nav > ul {
   padding: 0;
 }
 
-header > nav > ul > li {
+#header-menu > li {
   margin: 0px 20px;
 }
 
@@ -92,8 +110,6 @@ header > nav > ul > li {
   border-top: 1px solid #05004e;
 
   display: flex;
-  justify-items: center;
-  align-content: center;
 
   font-size: 1.6em;
   padding: 5% 15%;
@@ -109,7 +125,8 @@ header > nav > ul > li {
   margin: 3%;
 }
 
-.form input, .form label {
+.form input,
+.form label {
   width: 100%;
   margin: 3% 2%;
 }
@@ -120,7 +137,6 @@ header > nav > ul > li {
 }
 
 .form .submit {
-  width: 30%;
   font-size: 0.7em;
 }
 
@@ -129,6 +145,7 @@ header > nav > ul > li {
 .hero-home {
   background-image: url("/images/hero-home.jpg");
   background-position: center;
+  background-size: cover;
   height: 500px;
 }
 
@@ -139,7 +156,8 @@ header > nav > ul > li {
 }
 
 .hero-packages {
-  background-image: linear-gradient(0deg, #76b39d9d, #76b39d9d),url("/images/hero-packages.jpg");
+  background-image: linear-gradient(0deg, #76b39d9d, #76b39d9d),
+    url("/images/hero-packages.jpg");
   background-position: center;
   height: 400px;
   background-size: cover;
@@ -158,9 +176,11 @@ header > nav > ul > li {
 }
 
 .three-delivery-steps {
-  width: 90%;
+  height: 100%;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 25%);
+  grid-template-columns: repeat(3, 20em);
+  column-gap: 3%;
   justify-content: center;
 }
 
@@ -168,6 +188,7 @@ header > nav > ul > li {
   background-color: #f8feff;
   margin: 5%;
   text-align: center;
+  justify-content: flex-start;
 }
 
 .delivery-step > img {
@@ -185,9 +206,11 @@ header > nav > ul > li {
 /* Our Packages Banner */
 
 .our-packages-banner {
-  background: linear-gradient(0deg, #76b39d9d, #76b39d9d),url("/images/packages-home.jpg");
+  background: linear-gradient(0deg, #76b39d9d, #76b39d9d),
+    url("/images/packages-home.jpg");
   background-position: center;
   background-size: cover;
+  text-align: center;
   height: 500px;
 }
 
@@ -224,7 +247,7 @@ header > nav > ul > li {
   border-radius: 2px;
   margin: 5%;
   text-align: center;
-  
+
   position: relative;
   overflow: hidden;
 }
@@ -244,20 +267,22 @@ header > nav > ul > li {
   animation-duration: 1s;
 }
 
-.top-meal-card-title > a, .top-meal-card-price {
+.top-meal-card-title > a,
+.top-meal-card-price {
   color: #f8feff;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .top-meal-card-title > a:hover {
   color: #76b39d;
 }
 
-.top-meal-card-title, .top-meal-card-price {
+.top-meal-card-title,
+.top-meal-card-price {
   margin: 1% 0 2% 0;
 }
 
-.top-meal-card:hover > .top-meal-card-desc  {
+.top-meal-card:hover > .top-meal-card-desc {
   display: flex;
 }
 
@@ -266,7 +291,7 @@ header > nav > ul > li {
 .packages-list {
   width: 99%;
   display: grid;
-  grid-template-columns: repeat(4, 20em);
+  grid-template-columns: repeat(4, 25%);
   justify-content: center;
   padding-bottom: 3%;
 
@@ -284,7 +309,7 @@ header > nav > ul > li {
   width: 100%;
 }
 
-.package-info  {
+.package-info {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -319,7 +344,6 @@ footer > div {
   padding-bottom: 5%;
   border-bottom: 1px solid #05004e;
 }
-
 
 footer > p {
   text-align: center;
@@ -366,7 +390,7 @@ footer ul {
   padding: 0.7em;
   color: #fd5f00;
 }
- 
+
 .sqr {
   border-radius: 1px;
 }
@@ -396,6 +420,7 @@ footer ul {
   background-color: #f8feff;
   font-size: 1.1em;
   padding: 5px;
+  margin-top: 10px;
 }
 
 .mobile-only {
@@ -405,6 +430,138 @@ footer ul {
 /* Animations */
 
 @keyframes fade-in-bottom {
-  0%   {margin-bottom: -20%;}
-  100% {margin-bottom: 0;}
+  0% {
+    margin-bottom: -20%;
+  }
+  100% {
+    margin-bottom: 0;
+  }
+}
+
+/* Mobile and Tablet media-queries */
+
+/* Tablets landscape*/
+
+@media (max-width: 1024px) {
+  .three-delivery-steps {
+    grid-template-columns: repeat(3, 15em);
+  }
+
+  .packages-list {
+    grid-template-columns: repeat(3, 33%);
+  }
+
+  .top-meals-cards {
+    grid-template-columns: repeat(3, 30%);
+  }
+
+  .top-meal-card-desc {
+    display: flex;
+  } 
+
+  .login-registration { 
+    padding: 5% 5%;
+  }
+}
+
+/* Tablets portrait and Mobile landscape */
+
+@media (max-width: 767px) {
+  .three-delivery-steps {
+    grid-template-columns: repeat(3, 10em);
+  }
+
+  .top-meals-cards {
+    grid-template-columns: repeat(2, 50%);
+  }
+
+  .packages-list {
+    grid-template-columns: repeat(2, 50%);
+  }
+  
+  .login-registration { 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form {
+    width: 65%;
+  }
+
+  header {
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  header > .logo {
+    display: none;
+  }
+  
+  header > .login-area {
+    margin: 20px;
+    width: 200px;
+  }
+
+  #menu-button {
+    margin: 50px;
+    font-size: 2em;
+    
+    cursor: pointer;
+  }
+  
+  #header-menu {
+    display: none;
+
+    width: 100%;
+    border-top: 2px solid #05004e;
+    background-color: #f8feff;
+    margin: 0;
+    font-size: 1.5em;
+
+    flex-direction: column;
+
+    position: absolute;
+    top: 100%;
+  }
+
+  #header-menu > li {
+    margin: 10px 20px;
+  }
+
+  footer > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+  }
+  
+  .mobile-only {
+    display: initial;
+  }
+}
+
+/* Mobile Portrait */
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.8em;
+  }
+
+  .three-delivery-steps {
+    grid-template-columns: 80%;
+  }
+
+  .delivery-step > img {
+    width: 10em;
+  }
+
+  .top-meals-cards {
+    grid-template-columns: 80%;
+  }
+
+  .packages-list {
+    grid-template-columns: 90%;
+  }
 }
