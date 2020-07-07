@@ -117,6 +117,7 @@ header > .login-area {
 
 .form {
   display: flex;
+  position: relative;
   flex-direction: column;
   width: 50%;
 
@@ -138,6 +139,15 @@ header > .login-area {
 
 .form .submit {
   font-size: 0.7em;
+}
+
+.form-error {
+  color: #c40d0d;
+  font-size: 0.5em;
+  position: absolute;
+  margin-top: -5px;
+  padding-right: 10%;
+  left: 13%;
 }
 
 /* Heroes */
@@ -322,6 +332,13 @@ header > .login-area {
 
 .package-info > a {
   margin: 3%;
+}
+
+/* Dashboard */
+
+.dashboard {
+  border-top: 1px solid #05004e;
+  height: 500px;
 }
 
 /* Footer */
