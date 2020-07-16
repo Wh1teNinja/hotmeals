@@ -5,6 +5,8 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 
+require("dotenv").config({ path: "./config/.env" });
+
 const topMealsDB = require("./model/topmealsDB.js");
 const packagesDB = require("./model/packagesDB.js");
 
@@ -62,17 +64,16 @@ app.post("/login", (req, res) => {
     messages.login.password = "Please enter your password";
   }
 
-  if (messages != {}) {
-    res.render("login", {
-      title: "Login",
-      messages: messages,
-    });
-  } else {
-    res.redirect("/login");
-  }
+  res.render("login", {
+    title: "Login",
+    messages: messages,
+  });
 });
 
 app.post("/registration", (req, res) => {
+  const sgMail = require("@sendgrid/mail");
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
   let messages = {
     login: {
       email: "",
@@ -141,7 +142,15 @@ app.post("/registration", (req, res) => {
       title: "Login",
       messages: messages,
     });
-  } else {
+  } else {}
+    const msg = {
+      to: `${req.body.email}`,
+      from: "donotreply@hotmeals.com",
+      subject: "Successful Registration",
+      html: `<strong>Thank you, ${req.body.firstName} ${req.body.lastName}, for choosing our meal delivery service!</strong>`,
+    };
+    sgMail.send(msg);
+
     res.render("dashboard", {
       title: "Welcome!",
       firstName: req.body.firstName,
@@ -150,8 +159,7 @@ app.post("/registration", (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log("Web Server is running!");
 });
