@@ -142,7 +142,7 @@ app.post("/registration", (req, res) => {
       title: "Login",
       messages: messages,
     });
-  } else {}
+  } else {
     const msg = {
       to: `${req.body.email}`,
       from: "donotreply@hotmeals.com",
