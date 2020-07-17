@@ -149,12 +149,15 @@ app.post("/registration", (req, res) => {
       subject: "Successful Registration",
       html: `<strong>Thank you, ${req.body.firstName} ${req.body.lastName}, for choosing our meal delivery service!</strong>`,
     };
-    sgMail.send(msg);
-
-    res.render("dashboard", {
-      title: "Welcome!",
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+    sgMail.send(msg).then(() => {
+      res.render("dashboard", {
+        title: "Welcome!",
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+      });
+    })
+    .catch(err=>{
+        console.log(`Error ${err}`);
     });
   }
 });
