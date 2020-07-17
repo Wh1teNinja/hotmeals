@@ -145,7 +145,7 @@ app.post("/registration", (req, res) => {
   } else {
     const msg = {
       to: `${req.body.email}`,
-      from: "donotreply@hotmeals.com",
+      from: "afedchenko@myseneca.ca",
       subject: "Successful Registration",
       html: `<strong>Thank you, ${req.body.firstName} ${req.body.lastName}, for choosing our meal delivery service!</strong>`,
     };
