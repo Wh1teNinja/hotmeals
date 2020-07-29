@@ -1,14 +1,18 @@
-const express = require("express")
+const express = require("express");
 const router = express.Router();
-const topMealsDB = require("../model/topmealsDB.js");
-
+const db = require("../model/db");
 /* GET home page. */
 router.get("/", (req, res) => {
-  let topMeals = topMealsDB();
-  res.render("home", {
-    title: "Home",
-    topMeals,
-  });
+  db.getTopMeals()
+    .then((topMeals) => {
+      res.render("home", {
+        title: "Home",
+        topMeals,
+      });
+    })
+    .catch((err) => {
+      console.log("Error retrieving meals: " + err);
+    });
 });
 
 module.exports = router;

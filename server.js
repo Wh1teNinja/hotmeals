@@ -4,6 +4,15 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
+const db = require("./model/db");
+
+db.initialize()
+  .then(() => {
+    console.log("DB connect successful!");
+  })
+  .catch((err) => {
+    console.log("Error occurred while connecting to db: " + err);
+  });
 
 require("dotenv").config({ path: "./config/.env" });
 

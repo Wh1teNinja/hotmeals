@@ -1,14 +1,18 @@
-const express = require("express")
+const express = require("express");
 const router = express.Router();
-const packagesDB = require("../model/packagesDB.js");
+const db = require("../model/db");
 
 router.get("/", (req, res) => {
-  let packages = packagesDB();
-  res.render("meal-packages", {
-    title: "Packages",
-    packages,
-  });
+  db.getPackages()
+    .then((packages) => {
+      res.render("meal-packages", {
+        title: "Packages",
+        packages,
+      });
+    })
+    .catch((err) => {
+      console.log("Error retrieving packages" + err);
+    });
 });
-
 
 module.exports = router;
