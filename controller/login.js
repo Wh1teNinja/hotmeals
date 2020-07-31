@@ -1,5 +1,5 @@
 const express = require("express");
-const data = require("../data");
+const db = require("../model/db");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -10,11 +10,12 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   let form = req.body;
-  data
-    .validateLogin(form)
-    .then(() => {
-      res.render("login", {
-        title: "Login",
+  db.validateUserLogin(form)
+    .then((user) => {
+      res.render("dashboard", {
+        title: "Welcome!",
+        firstName: user.firstName,
+        lastName: user.lastName,
       });
     })
     .catch(() => {
@@ -24,6 +25,5 @@ router.post("/", (req, res) => {
       });
     });
 });
-
 
 module.exports = router;

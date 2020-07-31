@@ -1,11 +1,12 @@
 const express = require("express");
-const data = require("../data");
+const data = require("../emailSender");
+const db = require("../model/db");
 const router = express.Router();
 
 router.post("/", (req, res) => {
   let form = req.body;
-  data
-    .validateRegistration(form)
+  db
+    .addUser(form)
     .then(() => {
       data
         .sendWelcomeEmail(form)
