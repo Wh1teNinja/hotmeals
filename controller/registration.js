@@ -1,20 +1,21 @@
 const express = require("express");
-const data = require("../emailSender");
+const sender = require("../emailSender");
 const db = require("../model/db");
 const router = express.Router();
 
 router.post("/", (req, res) => {
   let form = req.body;
-  db
-    .addUser(form)
+  db.addUser(form)
     .then(() => {
-      data
+      sender
         .sendWelcomeEmail(form)
-        .then(() => {
-          res.render("dashboard", {
+        .then((user) => {
+          req.session.user = user;
+          res.redirect("dashboard", {
             title: "Welcome!",
             firstName: form.firstName,
             lastName: form.lastName,
+            user: req.session.user,
           });
         })
         .catch((err) => {
@@ -22,8 +23,9 @@ router.post("/", (req, res) => {
         });
     })
     .catch(() => {
-      res.render("login", {
-        title: "Login",
+      let view = form.title === "Home" ? "home" : "meal-packages";
+      res.render(view, {
+        title: form.title,
         messages: form.messages,
       });
     });

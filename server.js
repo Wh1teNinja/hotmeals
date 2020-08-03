@@ -2,9 +2,11 @@
 //ID: 159867183
 //email: afedchenko@myseneca.ca
 const express = require("express");
+const app = express();
+const db = require("./model/db");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const db = require("./model/db");
+const clientSessions = require("client-sessions");
 
 db.initialize()
   .then(() => {
@@ -21,18 +23,31 @@ const mealPackagesController = require("./controller/meal-packages");
 const loginController = require("./controller/login");
 const registrationController = require("./controller/registration");
 
-const app = express();
-
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
+
+app.use(
+  clientSessions({
+    cookieName: "session",
+    secret: process.env.sessionKey,
+    duration: 5 * 60 * 1000,
+    activeDuration: 60 * 1000,
+  })
+);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/", indexController);
 app.use("/meal-packages", mealPackagesController);
 app.use("/login", loginController);
 app.use("/registration", registrationController);
+
+app.get("/logout", (req, res) => {
+  req.session.reset();
+  res.redirect(req.headers.referer.replace(/https?:\/\/[^\/]+/, ""));
+});
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

@@ -7,6 +7,7 @@ router.get("/", (req, res) => {
     .then((topMeals) => {
       res.render("home", {
         title: "Home",
+        user: req.session.user,
         topMeals,
       });
     })

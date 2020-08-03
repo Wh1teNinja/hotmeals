@@ -12,7 +12,10 @@ let mealSchema = new Schema({
 });
 
 let userSchema = new Schema({
-  email: String,
+  email: {
+    type: String,
+    unique: true
+  }, 
   firstName: String,
   lastName: String,
   password: String,
@@ -109,7 +112,7 @@ module.exports.addUser = (data) => {
                 reject(data);
               } else {
                 console.log("User saved.");
-                resolve();
+                resolve(data);
               }
             });
           });

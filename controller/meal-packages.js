@@ -8,6 +8,7 @@ router.get("/", (req, res) => {
       res.render("meal-packages", {
         title: "Packages",
         packages,
+        user: req.session.user,
       });
     })
     .catch((err) => {

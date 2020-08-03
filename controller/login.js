@@ -2,25 +2,21 @@ const express = require("express");
 const db = require("../model/db");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render("login", {
-    title: "Login",
-  });
-});
-
 router.post("/", (req, res) => {
   let form = req.body;
   db.validateUserLogin(form)
     .then((user) => {
-      res.render("dashboard", {
-        title: "Welcome!",
-        firstName: user.firstName,
-        lastName: user.lastName,
+      req.session.user = user;
+      let view = form.title === "Home" ? "home" : "meal-packages";
+      res.render(view, {
+        title: form.title,
+        user: req.session.user,
       });
     })
     .catch(() => {
-      res.render("login", {
-        title: "Login",
+      let view = form.title === "Home" ? "home" : "meal-packages";
+      res.render(view, {
+        title: form.title,
         messages: form.messages,
       });
     });
