@@ -28,12 +28,14 @@
       </div>
       <div id="header-profile-menu" style="display: none">
         <ul>
-          <li><i class="fas fa-user"></i><a>Profile</a></li>
-          <li><i class="fas fa-cog"></i><a>Settings</a></li>
+          <li><i class="fas fa-user"></i><a href="/dashboard">Profile</a></li>
+          <li><i class="fas fa-cog"></i><a href="/dashboard/settings">Settings</a></li>
         </ul>
         <div class="line"></div>
         <ul>
-          <a href="/logout"><li><i class="fas fa-sign-out-alt text-danger"></i><span class="text-danger">Logout</span></li></a>
+          <a href="/logout">
+            <li><i class="fas fa-sign-out-alt text-danger"></i><span class="text-danger">Logout</span></li>
+          </a>
         </ul>
       </div>
       {{else}}
@@ -65,7 +67,8 @@
               <input class="submit button sqr solid-button" type="submit" name="submit" value="Sing In" tabindex="3" />
             </form>
           </div>
-          <div style="display: {{#if messages.registration}}flex{{else}}none{{/if}};" id="registration-form" class="form">
+          <div style="display: {{#if messages.registration}}flex{{else}}none{{/if}};" id="registration-form"
+            class="form">
             <form action="/registration" method="POST">
               <div class="form-group">
                 <div class="form-sub-group">

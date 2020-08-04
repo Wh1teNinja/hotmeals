@@ -1,6 +1,8 @@
 //Student: Andrei Fedchenko
 //ID: 159867183
 //email: afedchenko@myseneca.ca
+//github:
+//heroku:
 const express = require("express");
 const app = express();
 const db = require("./model/db");
@@ -22,6 +24,7 @@ const indexController = require("./controller/index");
 const mealPackagesController = require("./controller/meal-packages");
 const loginController = require("./controller/login");
 const registrationController = require("./controller/registration");
+const dashboardController = require("./controller/dashboard");
 
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
@@ -32,7 +35,7 @@ app.use(
   clientSessions({
     cookieName: "session",
     secret: process.env.sessionKey,
-    duration: 5 * 60 * 1000,
+    duration: 50 * 60 * 1000,
     activeDuration: 60 * 1000,
   })
 );
@@ -43,6 +46,7 @@ app.use("/", indexController);
 app.use("/meal-packages", mealPackagesController);
 app.use("/login", loginController);
 app.use("/registration", registrationController);
+app.use("/dashboard", dashboardController);
 
 app.get("/logout", (req, res) => {
   req.session.reset();

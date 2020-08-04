@@ -14,11 +14,13 @@ let mealSchema = new Schema({
 let userSchema = new Schema({
   email: {
     type: String,
-    unique: true
-  }, 
+    unique: true,
+  },
   firstName: String,
   lastName: String,
   password: String,
+  accessLevel: Number,
+  phoneNo: String,
 });
 
 let packageSchema = new Schema({
@@ -28,6 +30,7 @@ let packageSchema = new Schema({
   category: Number,
   noOfmeals: Number,
   desc: String,
+  address: String,
 });
 
 let Users;
@@ -105,7 +108,9 @@ module.exports.addUser = (data) => {
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             newUser.password = hash;
-
+            newUser.accessLevel = 0;
+            newUser.phoneNo = "";
+            newUser.address = "";
             newUser.save((err) => {
               if (err) {
                 console.log("There was an error saving user: " + err);
