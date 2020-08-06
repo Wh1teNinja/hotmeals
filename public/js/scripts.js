@@ -31,6 +31,20 @@ openRegistrationForm = () => {
   }
 };
 
+openProfileDropDown = () => {
+  let profileHeader = document.querySelector("#header-profile");
+  if (profileHeader.className === "flex-around") {
+    profileHeader.className = "flex-around opened-profile-menu";
+  } else profileHeader.className = "flex-around";
+
+  let profileHeaderMenu = document.querySelector(
+    "#header-profile-menu"
+  );
+  if (profileHeaderMenu.style.display === "none") {
+    profileHeaderMenu.style.display = "flex";
+  } else profileHeaderMenu.style.display = "none";
+};
+
 window.onload = () => {
   let menuButton = document.querySelector("#menu-button");
   menuButton.onclick = () => {
@@ -39,22 +53,6 @@ window.onload = () => {
       menu.style.display = "none";
     } else menu.style.display = "flex";
   };
-
-  let profileHeader = document.querySelector("#header-profile");
-  if (profileHeader) {
-    profileHeader.onclick = () => {
-      if (profileHeader.className === "flex-around") {
-        profileHeader.className = "flex-around opened-profile-menu";
-      } else profileHeader.className = "flex-around";
-
-      let profileHeaderMenu = document.querySelector(
-        "#header-profile-menu"
-      );
-      if (profileHeaderMenu.style.display === "none") {
-        profileHeaderMenu.style.display = "flex";
-      } else profileHeaderMenu.style.display = "none";
-    };
-  }
 
   let popUp = document.querySelector("#form-pop-up");
   if (popUp) {

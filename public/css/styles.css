@@ -31,7 +31,8 @@ span {
 p,
 li,
 label,
-input[type="text"] {
+input,
+text-area {
   font-family: "Lato", sans-serif;
 }
 
@@ -47,10 +48,13 @@ h2 {
   font-size: 1.2em;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+input,
+textarea {
   font-size: 1em;
+}
+
+textarea {
+  resize: none;
 }
 
 /* Supportive classes */
@@ -230,12 +234,14 @@ header > .login-area {
 }
 
 .form input,
-.form label {
+.form label,
+.form textarea {
   width: 100%;
   margin: 3% 0 0;
 }
 
-.form input {
+.form input,
+.form textarea {
   border: 1px solid #05004e44;
   border-radius: 5px;
 }
@@ -452,10 +458,10 @@ header > .login-area {
 #dashboard {
   padding: 2%;
   border-top: 1px solid #05004e;
-  height: 65vh;
+  min-height: 65vh;
   display: grid;
   grid-template: "a a" 10%
-                 "b c" auto / 20% 70%;
+                 "b c" auto / 20% 80%;
 }
 
 #dashboard-title {
@@ -506,7 +512,13 @@ ul > .dashboard-menu-option:last-child:hover {
 #dashboard-section-container input,
 #dashboard-section-container label {
   width: 95%;
-  margin-top: 3%;
+  margin-top: 0.7rem;
+}
+
+#dashboard-section-container input[type="checkbox"] {
+  width: 1.4em;
+  height: 1.4em;
+  margin: 0;
 }
 
 #dashboard-section-container input {
@@ -521,7 +533,7 @@ ul > .dashboard-menu-option:last-child:hover {
 
 #dashboard-submit-buttons input {
   width: auto;
-  margin: 3% 1%;
+  margin: 5% 1%;
 }
 
 .one {
@@ -534,6 +546,15 @@ ul > .dashboard-menu-option:last-child:hover {
 
 .three {
   grid-area: c;
+}
+
+#package-form {
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.form-img {
+  padding-top: 10%;
 }
 
 /* Footer */

@@ -1,8 +1,8 @@
 //Student: Andrei Fedchenko
 //ID: 159867183
 //email: afedchenko@myseneca.ca
-//github:
-//heroku:
+//github: https://github.com/Wh1teNinja/Hotmeals
+//heroku: https://hotmeals.herokuapp.com/
 const express = require("express");
 const app = express();
 const db = require("./model/db");

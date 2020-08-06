@@ -21,16 +21,17 @@ let userSchema = new Schema({
   password: String,
   accessLevel: Number,
   phoneNo: String,
+  address: String,
 });
 
 let packageSchema = new Schema({
-  title: String,
-  image: String,
+  name: String,
+  photo: String,
   price: Number,
-  category: Number,
-  noOfmeals: Number,
+  category: String,
+  noOfMeals: Number,
   desc: String,
-  address: String,
+  topPackage: Boolean,
 });
 
 let Users;
@@ -117,7 +118,7 @@ module.exports.addUser = (data) => {
                 reject(data);
               } else {
                 console.log("User saved.");
-                resolve(data);
+                resolve(newUser);
               }
             });
           });
@@ -232,6 +233,31 @@ module.exports.validateUserLogin = (data) => {
           console.log(err);
           reject(data);
         });
+    } else {
+      reject(data);
+    }
+  });
+};
+
+module.exports.addMeal = (data) => {
+  return new Promise((resolve, reject) => {
+    if (
+      data.name &&
+      data.price &&
+      data.desc &&
+      data.noOfMeals &&
+      data.category &&
+      data.photo
+    ) {
+      data.topPackage = data.topPackage == "on" ? true : false;
+      let newPackage = new Packages(data);
+      newPackage.save((err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
     } else {
       reject(data);
     }

@@ -11,12 +11,7 @@ router.post("/", (req, res) => {
         .sendWelcomeEmail(form)
         .then((user) => {
           req.session.user = user;
-          res.redirect("dashboard", {
-            title: "Welcome!",
-            firstName: form.firstName,
-            lastName: form.lastName,
-            user: req.session.user,
-          });
+          res.redirect("/dashboard");
         })
         .catch((err) => {
           console.log(`Error ${err}`);

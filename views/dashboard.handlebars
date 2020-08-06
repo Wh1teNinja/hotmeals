@@ -8,10 +8,15 @@
       <a href="/dashboard/settings">
         <li class="dashboard-menu-option">Settings</li>
       </a>
+      {{#if user.accessLevel}}
+      <a href="/dashboard/packages">
+        <li class="dashboard-menu-option">Add packages</li>
+      </a>
+      {{/if}}
       <li class="dashboard-menu-option"><a class="text-danger" href="/logout">Logout</a></li>
     </ul>
   </aside>
-  <div class"three" id="dashboard-section-container">
+  <section class"three" id="dashboard-section-container">
     {{#if profile}}
     <form action="/profile" method="PUT">
       <div class="form-group">
@@ -28,11 +33,11 @@
       </div><br>
       <div class="form-group">
         <div class="form-sub-group">
-          <label for="last-name">Phone Number</label>
+          <label for="phone-number">Phone Number</label>
           <input id="phone-number" name="phoneNo" type="text" value="{{user.phoneNo}}" tabindex="3" />
           <br></div>
         <div class="form-sub-group">
-          <label for="last-name">Address</label>
+          <label for="address">Address</label>
           <input id="address" name="address" type="text" value="{{user.address}}" tabindex="4" />
           <br></div>
       </div>
@@ -45,5 +50,48 @@
     {{#if setting}}
 
     {{/if}}
-  </div>
+    {{#if packages}}
+    <form id="package-form" action="/dashboard/add-package" method="POST" enctype="multipart/form-data">
+      <div class="form-img">
+        <label for="photo">Package Photo</label>
+        <img src="not-found.png" id='preview-photo' alt="preview image" />
+        <input id="photo" type="file" name="photo" tabindex="1" autocomplete="off" />
+      </div>
+      <div class="form">
+        <label for="name">Package Name</label>
+        <input id="name" name="name" type="text" tabindex="2" autocomplete="off" />
+        <div class="form-group">
+          
+          <div class="form-sub-group">
+            <label for="price">Price</label>
+            <input id="price" name="price" type="number" min="0.01" step="0.01" tabindex="3" autocomplete="off" />
+          </div>
+          <div class="form-sub-group">
+            <label for="category">Food Category</label>
+            <input id="category" name="category" type="text" tabindex="4" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-sub-group">
+            <label for="no-of-meals">Number of Meals</label>
+            <input id="no-of-meals" name="noOfMeals" type="number" value="1" min="1" tabindex="5" autocomplete="off" />
+          </div>
+          <div class="form-sub-group">
+            <label for="top-package">Top Package</label>
+            <input id="top-package" name="topPackage" type="checkbox" tabindex="6" />
+          </div>
+        </div>
+
+        <label for="desc">Description</label>
+        <textarea id="desc" name="desc" rows="4" cols="30" tabindex="7" autocomplete="off"></textarea>
+
+
+        <div id="dashboard-submit-buttons">
+          <input class="submit button rnd solid-button" type="submit" name="submit" value="Add Package" tabindex="8">
+        </div>
+      </div>
+    </form>
+    {{/if}}
+  </section>
 </main>
