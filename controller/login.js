@@ -7,18 +7,10 @@ router.post("/", (req, res) => {
   db.validateUserLogin(form)
     .then((user) => {
       req.session.user = user;
-      let view = form.title === "Home" ? "home" : "meal-packages";
-      res.render(view, {
-        title: form.title,
-        user: req.session.user,
-      });
+      res.json({done: true});
     })
-    .catch(() => {
-      let view = form.title === "Home" ? "home" : "meal-packages";
-      res.render(view, {
-        title: form.title,
-        messages: form.messages,
-      });
+    .catch((form) => {
+      res.json(form);
     });
 });
 

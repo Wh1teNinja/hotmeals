@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/f1fb1a31db.js"></script>
+  <script src="https://kit.fontawesome.com/f1fb1a31db.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <link rel="icon" href="/images/icon.png" type="image/x-icon">
   <link rel="stylesheet" href="/css/styles.css">
   <title>{{title}}</title>
@@ -28,8 +30,12 @@
       </div>
       <div id="header-profile-menu" style="display: none">
         <ul>
-          <a href="/dashboard"><li><i class="fas fa-user"></i>Profile</li></a>
-          <a href="/dashboard/settings"><li><i class="fas fa-cog"></i>Settings</li></a>
+          <a href="/dashboard">
+            <li><i class="fas fa-user"></i>Profile</li>
+          </a>
+          <a href="/dashboard/settings">
+            <li><i class="fas fa-cog"></i>Settings</li>
+          </a>
         </ul>
         <div class="line"></div>
         <ul>
@@ -41,7 +47,7 @@
       {{else}}
       <a onclick="openLoginForm()" class="sign-in-header">Sing In</a><span> | </span>
       <a onclick="openRegistrationForm()" class="rnd solid-button sign-up-button sign-up-header">Sign Up</a>
-      <div style="display: {{#if messages}}flex{{else}}none{{/if}}" id="form-pop-up" class="pop-up">
+      <div style="display: {{#if form}}flex{{else}}none{{/if}}" id="form-pop-up" class="pop-up">
         <div id="login-registration">
           <div class="flex-around form-choice">
             <button onclick="openLoginForm()" id="sign-in" class="solid-button rnd sign-up-button">Sing In</button>
@@ -50,60 +56,60 @@
               Up</button>
           </div>
           <div class="line"></div>
-          <div style="display: {{#if messages.login}}flex{{else}}none{{/if}};" id="login-form" class="form">
-            <form action="/login" method="POST">
+          <div style="display: {{#if form.messages.login}}flex{{else}}none{{/if}};" id="login-form" class="form">
+            <form id="login" onsubmit="submitForm(event, 'login')" action="/login" method="POST">
               <label for="email">Email</label>
-              <input id="email" name="email" type="text" autocomplete="email" tabindex="1" />
-              <span class="form-error">{{messages.login.email}}</span>
+              <input id="email" name="email" type="text" autocomplete="email" tabindex="1"
+                {{#if form.messages.login}}value="{{form.email}}" {{/if}} />
+              <span id="login-email-error" class="form-error"></span>
               <br>
 
               <label for="password">Password</label>
               <input id="password" name="password" type="password" autocomplete="off" maxlength="32" tabindex="2" />
-              <span class="form-error">{{messages.login.password}}</span>
+              <span id="login-password-error" class="form-error"></span>
               <br>
-
-              <input hidden name="title" type="text" value={{title}}>
 
               <input class="submit button sqr solid-button" type="submit" name="submit" value="Sing In" tabindex="3" />
             </form>
           </div>
-          <div style="display: {{#if messages.registration}}flex{{else}}none{{/if}};" id="registration-form"
+          <div style="display: {{#if form.messages.registration}}flex{{else}}none{{/if}};" id="registration-form"
             class="form">
-            <form action="/registration" method="POST">
+            <form id="registration" onsubmit="submitForm(event, 'registration')" action="/registration" method="POST">
               <div class="form-group">
                 <div class="form-sub-group">
                   <label for="first-name">First Name</label>
-                  <input id="first-name" name="firstName" type="text" autocomplete="given-name" tabindex="1" />
-                  <span class="form-error">{{messages.registration.firstName}}</span>
+                  <input id="first-name" name="firstName" type="text" autocomplete="given-name" tabindex="1"
+                    value="{{form.firstName}}" />
+                  <span id="reg-firstName-error" class="form-error">{{form.messages.registration.firstName}}</span>
                 </div>
                 <div class="form-sub-group">
                   <label for="last-name">Last Name</label>
-                  <input id="last-name" name="lastName" type="text" autocomplete="family-name" tabindex="2" />
-                  <span class="form-error">{{messages.registration.lastName}}</span>
+                  <input id="last-name" name="lastName" type="text" autocomplete="family-name" tabindex="2"
+                    value="{{form.lastName}}" />
+                  <span id="reg-lastName-error" class="form-error">{{form.messages.registration.lastName}}</span>
                 </div>
               </div>
               <br>
 
               <label for="email">Email</label>
-              <input name="email" type="text" autocomplete="email" tabindex="3" />
-              <span class="form-error">{{messages.registration.email}}</span>
+              <input name="email" type="text" autocomplete="email" tabindex="3"
+                {{#if form.messages.registration}}value="{{form.email}}" {{/if}} />
+              <span id="reg-email-error" class="form-error">{{form.messages.registration.email}}</span>
               <br>
 
               <label for="password">Password</label>
               <input name="password" type="password" autocomplete="off" maxlength="32" tabindex="4" />
-              <span class="form-error">{{messages.registration.password}}</span>
+              <span id="reg-pass-error" class="form-error">{{form.messages.registration.password}}</span>
               <br>
-              {{#if messages.registration.password}}
+              {{#if form.messages.registration.password}}
               <br>
               {{/if}}
 
               <label for="password">Confirm password</label>
               <input id="confirm-password" name="confirmPassword" type="password" autocomplete="off" maxlength="32"
                 tabindex="5" />
-              <span class="form-error">{{messages.registration.confirmPassword}}</span>
-              <br>
-
-              <input hidden name="title" type="text" value={{title}}>
+              <span id="reg-confPass-error" class="form-error">{{form.messages.registration.confirmPassword}}</span>
+              <br><br>
 
               <input class="submit button sqr solid-button" type="submit" name="submit" value="Sing Up" tabindex="6" />
             </form>

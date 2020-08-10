@@ -1,0 +1,16 @@
+<main id="package-main">
+  <div id="package-card">
+    <img id="package-photo" class="one" src="/images/{{package.photo}}" alt="package-photo">
+    <div class="two">
+      <h2 id="package-name">{{package.name}}</h2>
+      <div><h3>Category: </h3><span>{{package.category}}</span></div>
+      <div><h3>Number Of Meals: </h3><span>{{package.noOfMeals}}</span></div>
+      <h3>Description:</h3>
+      <p>{{package.desc}}</p>
+    </div>
+    <div id="package-bottom" class="three">
+      <h3>Price: ${{package.price}}</h3>
+      <button class="button sqr solid-button">Add to cart</button>
+    </div>
+  </div>
+</main>

@@ -11,18 +11,15 @@ router.post("/", (req, res) => {
         .sendWelcomeEmail(form)
         .then((user) => {
           req.session.user = user;
-          res.redirect("/dashboard");
+          res.json({done: true, dashboard: req.protocol + "://" +req.get('host') + "/dashboard"});
         })
         .catch((err) => {
           console.log(`Error ${err}`);
+          res.json(form);
         });
     })
     .catch(() => {
-      let view = form.title === "Home" ? "home" : "meal-packages";
-      res.render(view, {
-        title: form.title,
-        messages: form.messages,
-      });
+      res.json(form);
     });
 });
 

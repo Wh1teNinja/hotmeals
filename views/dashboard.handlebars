@@ -10,7 +10,10 @@
       </a>
       {{#if user.accessLevel}}
       <a href="/dashboard/packages">
-        <li class="dashboard-menu-option">Add packages</li>
+        <li class="dashboard-menu-option">Meal Packages</li>
+      </a>
+      <a href="/dashboard/add-package">
+        <li class="dashboard-menu-option">Add Package</li>
       </a>
       {{/if}}
       <li class="dashboard-menu-option"><a class="text-danger" href="/logout">Logout</a></li>
@@ -18,77 +21,114 @@
   </aside>
   <section class"three" id="dashboard-section-container">
     {{#if profile}}
-    <form action="/profile" method="PUT">
+    <form id="dashboard-profile-form" action="/dashboard" method="POST">
       <div class="form-group">
         <div class="form-sub-group">
-          <label for="firstName">First Name <span class="text-danger">*</span></label>
-          <input id="first-name" name="firstName" type="text" value="{{user.firstName}}" tabindex="1" />
-          <span class="form-error">{{messages.update.firstName}}</span>
+          <label for="first-name">First Name <span class="text-danger">*</span></label>
+          <input id="first-name" name="firstName" type="text" value="{{user.firstName}}" tabindex="1" disabled />
+          <i for="first-name" class="fas fa-pen"></i><span class="form-error">{{messages.update.firstName}}</span>
+        <span class="form-error">{{messages.profile.firstName}}</span>
         </div>
         <div class="form-sub-group">
           <label for="last-name">Last Name <span class="text-danger">*</span></label>
-          <input id="last-name" name="lastName" type="text" value="{{user.lastName}}" tabindex="2" />
-          <span class="form-error">{{messages.update.lastName}}</span>
+          <input id="last-name" name="lastName" type="text" value="{{user.lastName}}" tabindex="2" disabled />
+          <i for="last-name" class="fas fa-pen"></i><span class="form-error">{{messages.update.lastName}}</span>
+          <span class="form-error">{{messages.profile.lastName}}</span>
         </div>
       </div><br>
       <div class="form-group">
         <div class="form-sub-group">
           <label for="phone-number">Phone Number</label>
-          <input id="phone-number" name="phoneNo" type="text" value="{{user.phoneNo}}" tabindex="3" />
-          <br></div>
+          <input id="phone-number" name="phoneNo" type="text" value="{{user.phoneNo}}" tabindex="3" disabled />
+          <i for="phone-number" class="fas fa-pen"></i></div>
         <div class="form-sub-group">
           <label for="address">Address</label>
-          <input id="address" name="address" type="text" value="{{user.address}}" tabindex="4" />
-          <br></div>
-      </div>
+          <input id="address" name="address" type="text" value="{{user.address}}" tabindex="4" disabled />
+          <i for="address" class="fas fa-pen"></i></div>
+      </div><br>
       <div id="dashboard-submit-buttons">
-        <input class="cancel button rnd solid-button" type="submit" name="cancel" value="Cancel" tabindex="5">
-        <input class="submit button rnd solid-button" type="submit" name="submit" value="Update" tabindex="6">
+        <input class="cancel button rnd solid-button" type="submit" name="cancel" value="Cancel" tabindex="5" disabled>
+        <input class="submit button rnd solid-button" type="submit" name="submit" value="Update" tabindex="6" disabled>
       </div>
     </form>
     {{/if}}
-    {{#if setting}}
-
+    {{#if profileSettings}}
+    <form id="dashboard-settings-form" action="/dashboard/settings" method="POST">
+      <div class="form-sub-group">
+        <label for="current-password">Current Password <span class="text-danger">*</span></label>
+        <input id="current-password" name="currentPassword" type="password" autocomplete="off" tabindex="1" />
+      </div><span class="form-error">{{messages.update.currentPassword}}</span><br>
+      <div class="form-sub-group">
+        <label for="new-password">New Password <span class="text-danger">*</span></label>
+        <input id="new-password" name="newPassword" type="password" autocomplete="off" tabindex="2" />
+      </div><span class="form-error">{{messages.update.newPassword}}</span><br>
+      <div class="form-sub-group">
+        <label for="new-password-confirm">Confirm New Password <span class="text-danger">*</span></label>
+        <input id="new-password-confirm" name="newPasswordConfirm" type="password" autocomplete="off" tabindex="3" />
+      </div><span class="form-error">{{messages.update.newPasswordConfirm}}</span><br>
+      <br>
+      <div id="dashboard-submit-buttons">
+        {{#if success}}<span class="success-message">Password successfully updated!</span>{{/if}}
+        <input class="submit button rnd solid-button" type="submit" name="submit" value="Update" tabindex="5">
+      </div>
+    </form>
     {{/if}}
     {{#if packages}}
-    <form id="package-form" action="/dashboard/add-package" method="POST" enctype="multipart/form-data">
+    <div class="packages-list">
+      {{#each packages}}
+      <a href="/dashboard/edit/{{this._id}}">
+        <div class="package-card flex-center">
+          <img src="/images/{{this.photo}}">
+          <div class="package-info flex-center">
+            <h3 class="package-name">{{this.name}}</h3>
+            <span class="package-price">${{this.price}}</span>
+          </div>
+          <i class="fas fa-pen"></i>
+        </div>
+      </a>
+      {{/each}}
+    </div>
+    {{/if}}
+    {{#if addPackage}}
+    <form id="package-form" action="{{#if package}}/dashboard/edit/{{package._id}}{{else}}/dashboard/add-package{{/if}}" method="POST" {{#if package}}{{else}}enctype="multipart/form-data"{{/if}}>
       <div class="form-img">
         <label for="photo">Package Photo</label>
-        <img src="not-found.png" id='preview-photo' alt="preview image" />
-        <input id="photo" type="file" name="photo" tabindex="1" autocomplete="off" />
+        <img src="/images/{{#if package}}{{package.photo}}{{else}}not_found.png{{/if}}" id='preview-photo' alt="preview image" />
+        {{#if package}}{{else}}<input onchange="loadPreviewPhoto(event)" id="photo" type="file" name="photo" tabindex="1" autocomplete="off" />{{/if}}
       </div>
       <div class="form">
         <label for="name">Package Name</label>
-        <input id="name" name="name" type="text" tabindex="2" autocomplete="off" />
+        <input id="name" name="name" type="text" tabindex="2" autocomplete="off" value="{{package.name}}" />
         <div class="form-group">
-          
+
           <div class="form-sub-group">
             <label for="price">Price</label>
-            <input id="price" name="price" type="number" min="0.01" step="0.01" tabindex="3" autocomplete="off" />
+            <input id="price" name="price" type="number" min="0.01" step="0.01" tabindex="3" autocomplete="off" value="{{package.price}}" />
           </div>
           <div class="form-sub-group">
             <label for="category">Food Category</label>
-            <input id="category" name="category" type="text" tabindex="4" autocomplete="off" />
+            <input id="category" name="category" type="text" tabindex="4" autocomplete="off" value="{{package.category}}" />
           </div>
         </div>
 
         <div class="form-group">
           <div class="form-sub-group">
             <label for="no-of-meals">Number of Meals</label>
-            <input id="no-of-meals" name="noOfMeals" type="number" value="1" min="1" tabindex="5" autocomplete="off" />
+            <input id="no-of-meals" name="noOfMeals" type="number" min="1" tabindex="5" autocomplete="off" value="{{#if package}}{{package.noOfMeals}}{{else}}1{{/if}}" />
           </div>
           <div class="form-sub-group">
             <label for="top-package">Top Package</label>
-            <input id="top-package" name="topPackage" type="checkbox" tabindex="6" />
+            <input id="top-package" name="topPackage" type="checkbox" tabindex="6" {{#if package.topPackage}}checked{{/if}} />
           </div>
         </div>
 
         <label for="desc">Description</label>
-        <textarea id="desc" name="desc" rows="4" cols="30" tabindex="7" autocomplete="off"></textarea>
+        <textarea id="desc" name="desc" rows="4" cols="30" tabindex="7" autocomplete="off">{{package.desc}}</textarea>
 
 
         <div id="dashboard-submit-buttons">
-          <input class="submit button rnd solid-button" type="submit" name="submit" value="Add Package" tabindex="8">
+          {{#if success}}<span class="success-message">Package successfully {{#if package}}updated{{else}}added{{/if}}!</span>{{/if}}
+          <input class="submit button rnd solid-button" type="submit" name="submit" value="{{#if package}}Update Package{{else}}Add Package{{/if}}" tabindex="8">
         </div>
       </div>
     </form>

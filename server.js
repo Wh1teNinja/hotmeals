@@ -42,6 +42,8 @@ app.use(
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(bodyParser.json());
+
 app.use("/", indexController);
 app.use("/meal-packages", mealPackagesController);
 app.use("/login", loginController);

@@ -16,4 +16,19 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+  db.getPackageById(req.params.id)
+    .then((package) => {
+      res.render("package", {
+        title: package.name,
+        package,
+        user: req.session.user,
+      });
+    })
+    .catch((err) => {
+      console.log("Error showing package: " + err);
+      res.redirect(404, "/404");
+    });
+});
+
 module.exports = router;

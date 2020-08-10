@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require("../model/db");
 /* GET home page. */
 router.get("/", (req, res) => {
-  db.getTopMeals()
+  db.getTopPackages()
     .then((topMeals) => {
       res.render("home", {
         title: "Home",

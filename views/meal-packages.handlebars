@@ -6,16 +6,24 @@
 <main>
   <section>
     <div class="packages-list">
-      {{#each packages}}
+      {{!-- {{#each packages}}
       <div class="package-card">
-        <img src="images/{{this.image}}">
+        <img src="images/{{this.photo}}">
         <div class="package-info">
-          <h3>{{this.title}}</h3>
-          <p>{{this.desc}}</p>
+          <h3>{{this.name}}</h3>
           <span>${{this.price}}</span>
           <a href="" class="button sqr solid-button">View Package</a>
         </div>
       </div>
+      {{/each}} --}}
+      {{#each packages}}
+      <a href="/meal-packages/{{this._id}}"><div class="package-card flex-center">
+        <img src="images/{{this.photo}}">
+        <div class="package-info flex-center">
+          <h3 class="package-name">{{this.name}}</h3>
+          <span class="package-price">${{this.price}}</span>
+        </div>
+      </div></a>
       {{/each}}
     </div>
   </section>

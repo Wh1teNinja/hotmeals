@@ -41,13 +41,15 @@
           meals and see why thousands of Canadians order them.</p>
         <div class="top-meals-cards">
           {{#each topMeals}}
-          <div class="top-meal-card flex-center">
-            <img src="images/{{this.image}}">
-            <div class="top-meal-card-desc flex-center">
-                <h3 class="top-meal-card-title"><a href="">{{this.title}}</a></h3>
-                <span class="top-meal-card-price">${{this.price}}</span>
+          <a href="/meal-packages/{{this._id}}">
+            <div class="package-card flex-center">
+              <img src="/images/{{this.photo}}">
+              <div class="package-info flex-center">
+                <h3 class="package-name">{{this.name}}</h3>
+                <span class="package-price">${{this.price}}</span>
+              </div>
             </div>
-          </div>
+          </a>
           {{/each}}
         </div>
         <a class="button sqr solid-button" href="/meal-packages">FULL MENU</a>
