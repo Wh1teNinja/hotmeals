@@ -11,6 +11,7 @@ router.post("/", (req, res) => {
         .sendWelcomeEmail(form)
         .then((user) => {
           req.session.user = user;
+          req.session.cart = [];
           res.json({done: true, dashboard: req.protocol + "://" +req.get('host') + "/dashboard"});
         })
         .catch((err) => {

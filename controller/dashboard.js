@@ -134,7 +134,7 @@ router.get("/add-package", checkUser, (req, res) => {
   }
 });
 
-router.post("/add-package", upload.single("photo"), (req, res) => {
+router.post("/add-package", upload.single("photo"), checkUser, (req, res) => {
   let role = !req.session.user.accessLevel ? "User" : "Clerk";
   if (req.file) {
     req.body.photo = req.file.filename;
@@ -156,7 +156,7 @@ router.post("/add-package", upload.single("photo"), (req, res) => {
   }
 });
 
-router.get("/edit/:id", (req, res) => {
+router.get("/edit/:id", checkUser, (req, res) => {
   if (req.session.user.accessLevel) {
     let role = !req.session.user.accessLevel ? "User" : "Clerk";
     db.getPackageById(req.params.id)
@@ -171,14 +171,15 @@ router.get("/edit/:id", (req, res) => {
       })
       .catch((err) => {
         console.log("Error fetching package: " + err);
-        res.redirect(404, "/404");
+        res.redirect("/meal-packages");
       });
   } else {
     res.redirect("/dashboard");
   }
 });
 
-router.post("/edit/:id", (req, res) => {
+router.post("/edit/:id", checkUser, (req, res) => {
+  if (req.session.user.accessLevel) {
   db.updateMeal(req.body, req.params.id)
     .then((data) => {
       let role = !req.session.user.accessLevel ? "User" : "Clerk";
@@ -196,6 +197,7 @@ router.post("/edit/:id", (req, res) => {
       console.log(err);
       res.redirect("/dashboard/edit/" + req.params.id);
     });
+  }
 });
 
 module.exports = router;

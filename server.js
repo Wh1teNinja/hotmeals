@@ -3,6 +3,9 @@
 //email: afedchenko@myseneca.ca
 //github: https://github.com/Wh1teNinja/Hotmeals
 //heroku: https://hotmeals.herokuapp.com/
+//Clerk credentials:
+// Login: admin@test.com
+// Password: Password123!
 const express = require("express");
 const app = express();
 const db = require("./model/db");
@@ -25,6 +28,7 @@ const mealPackagesController = require("./controller/meal-packages");
 const loginController = require("./controller/login");
 const registrationController = require("./controller/registration");
 const dashboardController = require("./controller/dashboard");
+const cartController = require("./controller/cart");
 
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
@@ -49,6 +53,7 @@ app.use("/meal-packages", mealPackagesController);
 app.use("/login", loginController);
 app.use("/registration", registrationController);
 app.use("/dashboard", dashboardController);
+app.use("/cart", cartController);
 
 app.get("/logout", (req, res) => {
   req.session.reset();

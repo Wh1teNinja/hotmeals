@@ -7,6 +7,7 @@ router.post("/", (req, res) => {
   db.validateUserLogin(form)
     .then((user) => {
       req.session.user = user;
+      req.session.cart = [];
       res.json({done: true});
     })
     .catch((form) => {

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
 
 html {
   scroll-behavior: smooth;
@@ -100,10 +100,10 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   background-color: rgba(73, 73, 73, 0.37);
   animation-name: appear;
-  animation-duration: .6s;
+  animation-duration: 0.6s;
 }
 
 /* Header */
@@ -118,16 +118,37 @@ header {
 
 header > .logo {
   margin-right: auto;
-  margin-left: 50px;
+  margin-left: 75px;
   width: 200px;
 }
 
 header > .login-area {
-  margin: 0 50px 0 auto;
+  margin: 0 75px 0 auto;
   width: 200px;
   height: 100%;
 
   position: relative;
+}
+
+#cart-icon {
+  cursor: pointer;
+  position: absolute;
+  right: -40px;
+  top: 22px;
+  font-size: 1.2em;
+}
+
+#shopping-cart-size {
+  position: absolute;
+  color: #f8feff;
+  top: -5px;
+  right: -15px;
+  height: 25px;
+  width: 25px;
+  background-color: #fd5f00;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 1.2rem;
 }
 
 #header-profile {
@@ -464,9 +485,10 @@ header > .login-area {
 
 #package-card {
   display: grid;
-  grid-template: "a b" 45%
-                 "a b" 45%
-                 "c c" 10% / 40% 60%;
+  grid-template:
+    "a b" 45%
+    "a b" 45%
+    "c c" 10% / 40% 60%;
   margin: 5% auto;
   align-items: center;
   width: 80%;
@@ -515,15 +537,16 @@ header > .login-area {
   border-top: 1px solid #05004e;
   min-height: 65vh;
   display: grid;
-  grid-template: "a a" 2em
-                 "b c" auto / 20% 80%;
+  grid-template:
+    "a a" 2em
+    "b c" auto / 20% 80%;
 }
 
 #dashboard-title {
   border-bottom: 2px solid #c0c0c0;
   align-self: end;
   color: #c0c0c0;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   margin: 0;
 }
 
@@ -593,15 +616,14 @@ ul > .dashboard-menu-option:last-child:hover {
 #dashboard-submit-buttons {
   display: flex;
   justify-content: flex-end;
-} 
+}
 
 #dashboard-submit-buttons input {
   width: auto;
   margin: 5% 1%;
 }
 
-#dashboard-settings-form >
-#dashboard-submit-buttons {
+#dashboard-settings-form > #dashboard-submit-buttons {
   width: 45%;
 }
 
@@ -630,6 +652,65 @@ ul > .dashboard-menu-option:last-child:hover {
   width: 90%;
   margin-top: 5%;
   border: 1px solid #05004e;
+}
+
+/* Shopping cart */
+
+#cart {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 8em);
+  margin: 5% auto;
+  align-items: center;
+  width: 80%;
+  min-height: 60vh;
+  padding: 5%;
+  box-shadow: 5px 5px 10px grey;
+}
+
+#cart > .row {
+  display: grid;
+  grid-template-columns: 20% 45% 10% 10% 15%;
+  align-items: center;
+  justify-items: center;
+  height: 80%;
+  border-bottom: 2px solid #c0c0c0;
+  border-radius: 5px;
+}
+
+#cart > .header-row {
+  height: 50%;
+}
+
+.row > .name {
+  justify-self: left;
+}
+
+.row > img {
+  height: 90%;
+}
+
+.row > input {
+  width: 2em;
+  height: 2em;
+}
+
+.row > button {
+  width: 60%;
+}
+
+#cart-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#cart-bottom > * {
+  margin-left: 2%;
+}
+
+#cart-bottom > button {
+  height: 50%;
+  font-size: 1.2em;
 }
 
 /* Footer */
@@ -866,7 +947,7 @@ input[disabled] {
   }
 
   .form {
-    width: 65%;
+    width: 80%;
   }
 
   header {
@@ -879,7 +960,7 @@ input[disabled] {
   }
 
   header > .login-area {
-    margin: 20px;
+    margin: 20px 75px 20px 25px;
     width: 200px;
   }
 
@@ -920,6 +1001,78 @@ input[disabled] {
   .mobile-only {
     display: initial;
   }
+
+  .form-group {
+    flex-direction: column;
+  }
+
+  .form-sub-group {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #package-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #package-card > .two {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #package-card > .two > div {
+    display: flex;
+    width: 50%;
+  }
+
+  #package-name {
+    align-self: center;
+  }
+
+  #package-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #package-form .form-img > label,
+  #package-form .form-img > input {
+    width: auto;
+    max-width: 50%;
+  }
+
+  #cart {
+    grid-template-rows: repeat(auto-fill, 10em);
+  }
+  
+  #cart > .row {
+    grid-template-columns: 25% 35% 20% 20%;
+    position: relative;
+    height: 60%;
+    padding: 0 0 2em 0;
+    margin-bottom: 1em;
+  }
+
+  #cart > .header-row {
+   padding: 0; 
+  }
+
+  #remove {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    height: 2em;
+    font-size: 1em;
+    padding: 2px;
+    width: 10em;
+  }
 }
 
 /* Mobile Portrait */
@@ -927,6 +1080,10 @@ input[disabled] {
 @media (max-width: 600px) {
   body {
     font-size: 0.8em;
+  }
+
+  #preview-photo {
+    width: 60%;
   }
 
   .three-delivery-steps {

@@ -1,0 +1,26 @@
+<div id="cart">
+  {{#if cart}}
+  <div class="row header-row">
+    <h3>Photo</h3>
+    <h3 class="name">Package Name</h3>
+    <h3>Quantity</h3>
+    <h3>Price</h3>
+    <h3></h3>
+  </div>
+  {{#each cart}}
+  <div id="div-{{this._id}}" class="row">
+    <img src="/images/{{this.photo}}" alt="{{this.name}} photo">
+    <h3 class="name">{{this.name}}</h3>
+    <input onchange="setQuantity('{{this._id}}')" id="{{this._id}}" type="number" name="quantity" min="1" max="99" value="{{this.quantity}}">
+    <span class="price">${{this.price}}</span>
+    <button id="remove" class="sqr solid-button button off" onclick="removeFromCart('{{this._id}}')">Remove</button>
+  </div>
+  {{/each}}
+  <div id="cart-bottom">
+    <h3>Total Price:</h3><span id="total-price">${{totalPrice}}</span><button onclick="checkout()" class="sqr solid-button button">Checkout</button>
+  </div>{{else}}
+  <div class="flex-center">
+    <h1>Cart is empty. Add some packages.</h1>
+  </div>
+  {{/if}}
+</div>

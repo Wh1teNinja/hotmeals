@@ -7,6 +7,7 @@
   <script src="https://kit.fontawesome.com/f1fb1a31db.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
   <link rel="icon" href="/images/icon.png" type="image/x-icon">
   <link rel="stylesheet" href="/css/styles.css">
   <title>{{title}}</title>
@@ -28,6 +29,20 @@
         <h2>Hello, {{user.firstName}}!</h2>
         <button id="more-profile-button"><i class="fas fa-caret-down"></i></button>
       </div>
+      <div id="cart-icon"><a href="/cart"><i class="fas fa-shopping-cart"></i><span id="shopping-cart-size"></span></a>
+      </div>
+      <script>
+        let shoppingCart = document.querySelector("#shopping-cart-size");
+        if (shoppingCart) {
+          fetch("/cart/size", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          })
+            .then((response) => response.json())
+            .then((json) => {
+              shoppingCart.innerHTML = json.size || "0";
+            });
+        }</script>
       <div id="header-profile-menu" style="display: none">
         <ul>
           <a href="/dashboard">

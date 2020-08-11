@@ -102,6 +102,64 @@ let submitForm = (event, form) => {
     });
 };
 
+let addPackage = (id) => {
+  fetch("/cart", {
+    method: "POST",
+    body: JSON.stringify({ id: id }),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      document.querySelector("#shopping-cart-size").innerHTML =
+        json.size;
+    });
+};
+
+let setQuantity = (id) => {
+  let data = { quantity: Number.parseInt($("#" + id).val()), id: id };
+  fetch("/cart/size", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      document.querySelector("#total-price").innerHTML =
+        "$" + json.totalPrice;
+      document.querySelector("#shopping-cart-size").innerHTML =
+        json.size;
+    });
+};
+
+let removeFromCart = (id) => {
+  document.querySelector("#div-" + id).remove();
+  fetch("/cart", {
+    method: "DELETE",
+    body: JSON.stringify({ id: id }),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      document.querySelector("#total-price").innerHTML =
+        "$" + json.totalPrice;
+      document.querySelector("#shopping-cart-size").innerHTML =
+        json.size;
+    });
+};
+
+let checkout = () => {
+  fetch("/cart/checkout", {
+    method: "POST",
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      document.querySelector("#shopping-cart-size").innerHTML =
+        json.size;
+      document.querySelector("#cart").innerHTML =
+        '<div class="flex-center"><h1>Cart is empty. Add some packages.</h1></div>';
+    });
+};
+
 window.onload = () => {
   let menuButton = document.querySelector("#menu-button");
   menuButton.onclick = () => {
